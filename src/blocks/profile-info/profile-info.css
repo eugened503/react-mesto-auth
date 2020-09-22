@@ -1,0 +1,27 @@
+@import url('./__button/profile-info__button.css');
+@import url('./__subtitle/profile-info__subtitle.css');
+@import url('./__title/profile-info__title.css');
+.profile-info {
+    display: flex;
+    flex-direction: row;
+    color: #FFFFFF;
+    position: relative;
+}
+
+@media screen and (min-width: 768px) {
+    .profile-info {
+        justify-content: space-between;
+        align-items: center;
+        width: 336px;
+        margin: 0 0 10px 0;
+    }
+}
+
+@media screen and (max-width: 767px) {
+    .profile-info {
+        justify-content: center;
+        width: 282px;
+        align-items: center;
+        margin: 0;
+    }
+}

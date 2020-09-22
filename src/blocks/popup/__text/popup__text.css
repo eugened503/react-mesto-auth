@@ -1,0 +1,45 @@
+@import url('./_text-margin/popup__text_text-margin.css');
+@import url('./_work-margin/popup__text_work-margin.css');
+@import url('._avatar/popup__text_avatar.css');
+
+.popup__text {
+    width: 358px;
+    padding: 0 0 10px 0;
+    border: none;
+    border-bottom: 2px solid #CCCCCC;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 14px;
+    line-height: 17px;
+}
+
+.popup__text:focus {
+    outline: none;
+    box-shadow: 0 0 0 3px lightskyblue;
+}
+
+@media screen and (min-width: 366px)and (max-width: 635px) {
+    .popup__text {
+        width: 210px;
+        padding: 0 0 10px 0;
+        border: none;
+        border-bottom: 2px solid #CCCCCC;
+        font-style: normal;
+        font-weight: normal;
+        font-size: 14px;
+        line-height: 17px;
+    }
+}
+
+@media screen and (max-width: 365px) {
+    .popup__text {
+        width: 183px;
+        padding: 0 0 10px 0;
+        border: none;
+        border-bottom: 2px solid #CCCCCC;
+        font-style: normal;
+        font-weight: normal;
+        font-size: 12px;
+        line-height: 15px;
+}
+}

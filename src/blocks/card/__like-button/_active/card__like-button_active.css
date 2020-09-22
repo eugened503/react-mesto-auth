@@ -1,0 +1,16 @@
+.card__like-button_active {
+    opacity: 1;
+    background-image: url(../../../../images/heart-filled.svg);
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+    width: 28px;
+    height: 25px;
+    background-size: 20px 18px;
+  }
+
+  .card__like-button_active:hover {
+    opacity: 1;
+  }
+  
+  

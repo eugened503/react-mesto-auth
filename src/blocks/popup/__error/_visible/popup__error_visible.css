@@ -1,0 +1,38 @@
+.popup__error_visible {
+    transition: 0.3s;
+    position: absolute;
+    margin-top: 3px;
+    left: 35px;
+    width: 358px;
+    height: 12px;
+    display: block;
+    color: red;
+    border: none;
+    font-family: Inter;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 12px;
+    line-height: 15px;
+  }
+
+  @media screen and (min-width: 366px)and (max-width: 635px) {
+    .popup__error_visible {
+        width: 74%;
+    
+    }
+}
+
+@media screen and (max-width: 365px) {
+    .popup__error_visible {
+  
+        width: 200px;
+      
+    }
+}
+@media screen and (max-width: 364px) {
+  .popup__error_visible {
+    left: 20px;
+      width: 200px;
+    
+  }
+}

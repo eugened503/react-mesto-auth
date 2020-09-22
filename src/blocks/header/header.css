@@ -1,0 +1,48 @@
+@import url('./__logo/header__logo.css');
+@import url('./__pencil/header__pencil.css');
+@import url('./__register-button-container/header__register-button-container.css');
+@import url('./__element/header__element.css');
+@import url('./__element-top/header__element-top.css');
+@import url('./__element-right/header__element-right.css');
+@import url('./__none/header__none.css');
+@import url('./__block/header__block.css');
+
+.header {
+    display: flex;
+    justify-content: space-between;
+    flex-direction: row;
+    position: relative;
+    border-bottom: 1px solid #545454;
+}
+
+@media screen and (min-width: 938px) {
+    .header {
+        width: 882px;
+        margin: 0 auto;
+        padding: 45px 0 36px 0;
+    }
+}
+
+@media screen and (min-width: 768px) and (max-width: 937px) {
+    .header {
+        width: calc(100% - 54px);
+        margin: 0 auto;
+        padding: 45px 0 40px 0;
+    }
+}
+
+@media screen and (min-width: 321px) and (max-width: 767px) {
+    .header {
+        margin: 0 auto 40px auto;
+        padding: 28px 0 30px 0;
+        width: calc(100% - 54px);
+    }
+}
+
+@media screen and (max-width: 320px) {
+    .header {
+        margin: 0 auto 40px auto;
+        padding: 28px 0 30px 0;
+        width: 100%;
+    }
+}

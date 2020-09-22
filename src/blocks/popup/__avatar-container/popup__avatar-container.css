@@ -1,0 +1,26 @@
+.popup__avatar-container {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    display: block;
+    max-width: 430px;
+    height: 270px;
+    background-color: white;
+    transform: translate(-50%, -50%);
+    border-radius: 10px;
+}
+
+@media screen and (min-width: 366px) and (max-width: 635px) {
+    .popup__avatar-container {
+        max-width: 282px;
+        height: 270px;
+    }
+}
+
+@media screen and (max-width: 365px) {
+    .popup__avatar-container {
+        max-width: 240px;
+       min-height: 270px;
+    }
+}
+

@@ -1,0 +1,38 @@
+    .profile-info__button {
+        background-color: black;
+        background-image: url(../../../images/Vector.svg);
+        background-size: cover;
+        background-repeat: no-repeat;
+        background-position: center;
+        background-size: 10px 10px;
+        margin-left: auto;
+        border: 1px solid white;
+        cursor: pointer;
+        -webkit-box-sizing: border-box;
+        box-sizing: border-box;
+        -webkit-transition: .2s linear;
+        -moz-transition: .2s linear;
+        -o-transition: .2s linear;
+        transition: .2s linear;
+    }
+    
+    .profile-info__button:hover {
+        opacity: .6;
+    }
+    
+    @media screen and (min-width: 768px) {
+        .profile-info__button {
+            width: 24px;
+            height: 24px;
+            margin: 0 0 20px 18px;
+        }
+    }
+    
+    @media screen and (max-width: 767px) {
+        .profile-info__button {
+            left: 225px;
+            width: 18px;
+            height: 18px;
+            margin-left: 8px;
+        }
+    }

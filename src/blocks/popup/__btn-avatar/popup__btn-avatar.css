@@ -1,0 +1,16 @@
+.popup__btn-avatar {
+    margin: 50px 36px 0 36px;
+}
+
+@media screen and (min-width: 366px)and (max-width: 635px) {
+    .popup__btn-avatar {
+        margin: 50px auto auto 36px;
+    }
+}
+
+@media screen and (max-width: 365px) {
+    .popup__btn-avatar {
+        margin: 50px 20px auto 20px;
+      
+    }
+}

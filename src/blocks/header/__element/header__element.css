@@ -1,0 +1,13 @@
+.header__element {     
+   margin-top: 6px 0 0 0;
+   text-decoration: none;
+   border: none;
+   color: white;
+   background-color: black;    
+   font-size: 18px;
+   font-style: normal;
+   font-weight: 400;
+   line-height: 22px;
+   letter-spacing: 0em;
+   text-align: right;
+  }
