@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import Header from './Header';
 import Main from './Main';
 import Footer from './Footer';
@@ -27,14 +27,10 @@ function App() {
   const [showImage, setShowImage] = React.useState({}); //Хук для захвата данных при клике на карточку
   const [isInfoTooltip, setInfoTooltip] = React.useState(false);
   const [isInfoTooltipMistake, setInfoTooltipMistake] = React.useState(false);
-  const [loggedIn, SetloggedIn] = React.useState(false);
-  const [userData, SetUserData] = React.useState({});
+  const [loggedIn, setLoggedIn] = React.useState(false);
+  const [userData, setUserData] = React.useState({});
   const history = useHistory();
-  const [isRegister, setRegister] = React.useState(false); //определение видимости поля "регистрация"
-  const [isEnterSite, setEnterSite] = React.useState(false); //определение видимости поля "войти"
-  const [isShowEmail, setShowEmail] = React.useState(false); //определение видимости поля "email" 
-  const [isLeaveSite, setLeaveSite] = React.useState(false); //определение видимости поля "выйти" 
-
+  
   React.useEffect(() => {
     api.getUserInfoServer('/users/me') //получаем информацию о пользователе с сервера
       .then((data) => {
@@ -142,25 +138,49 @@ function App() {
     tokenCheck();
   }, [loggedIn])
   
-  function handleLogin() {
-    SetloggedIn(true);
+
+  function handleLogin(email, password) {
+ 
+  auth.authorize(email, password)
+      .then((data) => {
+        if (!data) {
+          return console.log('Что-то пошло не так');
+        }
+        if (data) {
+          setLoggedIn(true);
+          history.push('/'); // переадресуем пользователя
+          return;
+        }
+      })
+      .catch(err => console.log(err)); // запускается, если пользователь не найден 
+  }
+
+  function handleRegister(email, password) {
+
+    auth.register(email, password).then((res) => {
+      if (res) {
+        handleSetInfoTooltip(); //поп-ап успешной регистрации
+        history.push('/sign-in');
+      } else {
+        handleSetInfoTooltipMistake(); //поп-ап неуспешной регистрации
+        console.log('Произошла ошибка.');
+      }
+    })
+    .catch(err => console.log(err));
   }
 
   function tokenCheck() {
 
     if (localStorage.getItem('jwt')) {
       const jwt = localStorage.getItem('jwt');
-
       auth.checkToken(jwt)
         .then((res) => {
-
           if (res) {
-            showLoginEmail();
-            SetUserData({
+            setUserData({
               _id: res.data._id,
               email: res.data.email
             })
-            SetloggedIn(true);
+            setLoggedIn(true);
             history.push("/");
           }
         })
@@ -168,29 +188,14 @@ function App() {
     }
   }
 
-  function closeRegistration() { //скрываем поле регистрации, показываем поле 'войти'
-    setRegister(true)
-    setEnterSite(true)
-  }
+  function signOut() {
 
-  function hideEntrance() { //скрываем поле 'войти', показываем поле регистрации
-    setEnterSite(false)
-    setRegister(false)
-  }
-
-  function showLoginEmail() { //показываем поле "email" и поле "выйти"
-    setShowEmail(true)
-    setRegister(true)
-    setLeaveSite(true)
-    setEnterSite(false)
-  }
-
-  function hideOutputMail() { //скрываем поле "email" и поле "выйти", показываем поле регистрации
-    setShowEmail(false)
-    setRegister(false)
-    setLeaveSite(false)
-  }
-
+    setLoggedIn(false);
+    setUserData('');
+      localStorage.removeItem('jwt');
+      history.push('/sign-in');
+    }
+  
   return (
     <>
       <div className="page">
@@ -198,13 +203,8 @@ function App() {
           <Header
             loggedIn={loggedIn}
             userData={userData}
-            isRegister={isRegister}
-            closeRegistration={closeRegistration}
-            isEnterSite={isEnterSite}
-            hideEntrance={hideEntrance}
-            isShowEmail={isShowEmail}
-            isLeaveSite={isLeaveSite}
-            hideOutputMail={hideOutputMail}
+            setUserData={setUserData}
+            onSignOut={signOut}
           />
           <Switch>
             <ProtectedRoute exact path="/" loggedIn={loggedIn}
@@ -217,19 +217,17 @@ function App() {
               onCardLike={handleCardLike}
               onCardDelete={handleCardDelete}
             />
-            <Route path="/signup">
+            <Route path="/sign-up">
               <Register
-                hideEntrance={hideEntrance}
-                onInfoTooltipMistake={handleSetInfoTooltipMistake}
-                onInfoTooltipManage={handleSetInfoTooltip} />
+                onRegister={handleRegister}
+                />
             </Route>
-            <Route path="/signin">
-              <Login handleLogin={handleLogin}
-                closeRegistration={closeRegistration}
-                showLoginEmail={showLoginEmail} />
+            <Route path="/sign-in">
+              <Login onLogin={handleLogin}
+                 />
             </Route>
             <Route>
-              {loggedIn ? <Redirect to="/signup" /> : <Redirect to="/signin" />}
+              {loggedIn ? <Redirect to="/" /> : <Redirect to="/sign-in" />}
             </Route>
           </Switch>
           <InfoTooltipManage isOpen={isInfoTooltip} onClose={closeAllPopups} />
@@ -243,7 +241,6 @@ function App() {
         </CurrentUserContext.Provider>
       </div>
     </>
-
   );
 }
 

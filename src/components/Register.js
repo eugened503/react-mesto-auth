@@ -1,30 +1,13 @@
 import React, { useState } from 'react';
-import { Link, useHistory, Redirect } from 'react-router-dom';
-import * as auth from '../auth.js';
+import { Link } from 'react-router-dom';
 
-const Register = (props) => {
+function Register(props) {
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
-  const history = useHistory()
- 
-
-  //console.log(props.registerStatus);
-  //props.closeRegistration();
-
+  
   const handleSubmit = (e) => {
     e.preventDefault();
- 
-    auth.register(email, password).then((res) => {
-      if (res) {
-        props.onInfoTooltipManage(); //поп-ап успешной регистрации
-        history.push('/signin');
-      } else {
-        props.onInfoTooltipMistake(); //поп-ап неуспешной регистрации
-        history.push('/signin');
-        console.log('Произошла ошибка.');
-
-      }
-    })
+    props.onRegister(email, password);
   }
 
   return (
@@ -41,7 +24,7 @@ const Register = (props) => {
       </form>
       <div className="login__signup">
         <p className="signup__link">Уже зарегистрированы?</p>
-        <Link className="signup__link" to="/signin" onClick={props.hideEntrance}>Войти</Link>
+        <Link className="signup__link" to="/sign-in" onClick={props.hideEntrance}>Войти</Link>
       </div>
     </div>
   );
