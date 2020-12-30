@@ -1,5 +1,7 @@
 # Проект «Место» c авторизацией и регистрацией.
 
+![Alt-фото проекта](https://github.com/eugened503/react-mesto-auth/blob/master/src/images/present.jpg?raw=true)
+
 ## Функциональность.
 * Авторизация, регистрация и проверка токена через сервис https://auth.nomoreparties.co.
 * Запросы к API.
