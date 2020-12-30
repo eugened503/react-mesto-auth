@@ -11,9 +11,6 @@ class Api {
   _fetch(url, params) {
     
     params.headers = {  
-   
-   
-   
       authorization: this._authorization,
       'Content-Type': 'application/json',
     };
